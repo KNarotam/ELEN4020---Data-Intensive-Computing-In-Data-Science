@@ -157,7 +157,7 @@ for (int i=0;i<=dimension-1;i++){
     
     printf("  ;  Value = ");
     printf("%d",arr[index]);	//Prints array value at index mapped from co-ordinate
-    printf("\n\n\n");}
+    printf("\n");}
 
     printf("\n...Executed procedure 3...\n_______________________________________\n_______________________________________\n");
 }
