@@ -30,12 +30,11 @@ int main(){
 	Dimension = sizeof(arrayInitializer) / sizeof(int);	
 	allocateArray(arrayInitializer,Dimension);
 	*/
-	
 
 //////////////////////////////////////////////////////////////
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//To view the entire output,disable 'Limit Scrolling to' in terminal>edit>profiles>edit>scrolling tabc
+//To view the entire output,disable 'Limit Scrolling to' in terminal>edit>profiles>edit>scrolling tab
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		
 	int arrayInitializer1[] = {100,100};
@@ -53,10 +52,6 @@ int main(){
 	int arrayInitializer4[] = {20,20,20,20,20};
 	Dimension = sizeof(arrayInitializer4) / sizeof(int);
 	allocateArray(arrayInitializer4,Dimension);
-	
-	
-
-
 
 }
 
@@ -65,8 +60,8 @@ int main(){
 
 void allocateArray(int iniArray[],int dimension){
 
+    //Determine number of elements in array
     int num_elements = 1;
-
     for (int i=0;i<dimension;i++){
 	num_elements*=iniArray[i];}
 
@@ -79,13 +74,12 @@ void allocateArray(int iniArray[],int dimension){
     // return an error to caller if memory cannot be allocated
     if(array == NULL) {
     	printf("malloc failed!\n");   
-    	exit(1);}   
-			   
+    	exit(1);}   			   
 
     for(int i=0; i < num_elements; i++){
-    	array[i] = i;
+    	array[i] = i;	//Sets cell value to index - not required - but makes it easier to visualise
   	//printf("%d",array[i]);printf(" ");	//Uncomment this line to print the allocated array
-}
+					}
 
 // Execute procedures on array
 
@@ -137,7 +131,7 @@ printf("Co-ordinate = (");
 
 //Random Co-ordinate Creation
 for (int i=0;i<dimension;i++){
-		coordinate_array[i] = rand()%arr2[i];   //Creates random co-ordinate, bounded by N0,N1,...Nd where d is the dimension
+	coordinate_array[i] = rand()%arr2[i];   //Creates random co-ordinate, bounded by N0,N1,...Nd where d is the dimension
         printf("%d",coordinate_array[i]);
         if (i < dimension-1)    //Determines how many commas to print,depending on number of co-ordinates
             printf(" , ");
@@ -150,7 +144,7 @@ printf(")");
 
 int product = 1;    //Variable for inner product
 int index = 0;      //Index is the linear row-major-ordered array index
-int product2 = 1;   ////Variable for outer produc
+int product2 = 1;   //Variable for outer produc
 
 //Row major indexing equation
 for (int i=0;i<=dimension-1;i++){
