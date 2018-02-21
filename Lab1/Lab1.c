@@ -2,12 +2,20 @@
 #include <stdio.h>
 #include <time.h>
 
-//Functio prototypes
+//Function prototypes
+void allocateArray(int *,int);
 void procedureOne(int *,int );
 void procedureTwo(int *,int );
 void procedureThree(int *,int *,int ,int );
 
 int main(){
+
+	srand(time(NULL));  //Seeding for random number generator
+	int Dimension;	   
+
+//////////////////////////////////////////////////////////////
+
+	//Example array
 
 	//This example uses a 2D (5x5) array
 	// It is stored as a linear row major ordered array
@@ -17,59 +25,87 @@ int main(){
 	// 15  16  17  18  19
 	// 20  21  22  23  24
 
-    srand(time(NULL));  //Seeding for random number generator
-    
-	int arrayInitializer[] = {5,5};
-	//int arrayInitializer1[] = {100,100};
-	//int arrayInitializer2[] = {100,100,100};
-	//int arrayInitializer3[] = {50,50,50,50};
-	//int arrayInitializer4[] = {20,20,20,20,20};
-    
-	int dimension = sizeof(arrayInitializer)/sizeof(int*);
-	int num_elements = 1;
-	for (int i=0;i<dimension;i++){
-		num_elements*=arrayInitializer[i];}
+	/*
+	int arrayInitializer[] = {5,5};	//Can enter any matrix,separate dimensions with commas
+	Dimension = sizeof(arrayInitializer) / sizeof(int);	
+	allocateArray(arrayInitializer,Dimension);
+	*/
+	
 
-	//Dynamically allocate array (assumed to be linear row major ordered)
-	int *array;
-	array = (int *)malloc(sizeof(int)*num_elements);
+//////////////////////////////////////////////////////////////
 
- 
-	printf("%d Dimensions",dimension);printf(" , ");printf("%d Elements",num_elements);printf("\n\n\n");
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//To view the entire output,disable 'Limit Scrolling to' in terminal>edit>profiles>edit>scrolling tabc
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		
+	int arrayInitializer1[] = {100,100};
+	Dimension = sizeof(arrayInitializer1) / sizeof(int);
+	allocateArray(arrayInitializer1,Dimension);
+
+	int arrayInitializer2[] = {100,100,100};
+	Dimension = sizeof(arrayInitializer2) / sizeof(int);
+	allocateArray(arrayInitializer2,Dimension);
+
+	int arrayInitializer3[] = {50,50,50,50};
+	Dimension = sizeof(arrayInitializer3) / sizeof(int);
+	allocateArray(arrayInitializer3,Dimension);
+
+	int arrayInitializer4[] = {20,20,20,20,20};
+	Dimension = sizeof(arrayInitializer4) / sizeof(int);
+	allocateArray(arrayInitializer4,Dimension);
+	
+	
 
 
-	if(array == NULL) {
-  		printf("malloc failed!\n");   
-  		exit(1);   // return an error to caller if memory cannot be allocated
-			   }
-
-for(int i=0; i < num_elements; i++){
-  array[i] = i;
-  printf("%d",array[i]);
-  printf(" ");
-}
-
-
-procedureOne(array,num_elements);
-
-procedureTwo(array,num_elements);
-
-procedureThree(array,arrayInitializer,num_elements,dimension);
 
 }
 
 //______________________________________________________________
 // Implementation
 
+void allocateArray(int iniArray[],int dimension){
+
+    int num_elements = 1;
+
+    for (int i=0;i<dimension;i++){
+	num_elements*=iniArray[i];}
+
+    //Dynamically allocate array (assumed to be linear row major ordered)
+    int *array;
+    array = (int *)malloc(sizeof(int)*num_elements);
+ 
+    printf("%d Dimensions",dimension);printf(" , ");printf("%d Elements",num_elements);printf("\n\n\n");
+
+    // return an error to caller if memory cannot be allocated
+    if(array == NULL) {
+    	printf("malloc failed!\n");   
+    	exit(1);}   
+			   
+
+    for(int i=0; i < num_elements; i++){
+    	array[i] = i;
+  	//printf("%d",array[i]);printf(" ");	//Uncomment this line to print the allocated array
+}
+
+// Execute procedures on array
+
+procedureOne(array,num_elements);
+
+procedureTwo(array,num_elements);
+
+procedureThree(array,iniArray,num_elements,dimension);
+
+}
+
 void procedureOne(int arr[],int numElements){ 
     printf("\n\n\n");
     printf("Procedure 1 : ");
     
 	for (int i=0;i<numElements;i++){
-		arr[i] = 0;
-        printf("%d",arr[i]);
-        printf(" ");}
-        printf("\n");
+		arr[i] = 0;	// Sets all elements to zero
+        //printf("%d",arr[i]);printf(" ");	//Uncomment this line to print procedure 1 output
+					}
+        printf("\n...Executed procedure 1...\n");
 }
 
 void procedureTwo(int arr[],int numElements){ 
@@ -78,12 +114,12 @@ void procedureTwo(int arr[],int numElements){
     
 	int tenPercentElements = numElements/10;  // Calculates 10% of number of total elements
     
-	for (int i=0;i<tenPercentElements;i++){
-		arr[i] = 1;}
 	for (int i=0;i<numElements;i++){
-        printf("%d",arr[i]);
-        printf(" ");}
-        printf("\n");
+		if (i < tenPercentElements)
+			arr[i] = 1;		// Sets first 10% of elements to 1
+        	//printf("%d",arr[i]);printf(" ");	//Uncomment this line to print procedure 2 output
+			}
+        printf("\n...Executed procedure 2...\n");
 }
 
 void procedureThree(int arr[],int arr2[],int numberElements,int dimension){
@@ -101,7 +137,7 @@ printf("Co-ordinate = (");
 
 //Random Co-ordinate Creation
 for (int i=0;i<dimension;i++){
-		coordinate_array[i] = rand()%arr2[i];   //Creates random co-ordinate, bounded by N0.N1,...Nd where d is the dimension
+		coordinate_array[i] = rand()%arr2[i];   //Creates random co-ordinate, bounded by N0,N1,...Nd where d is the dimension
         printf("%d",coordinate_array[i]);
         if (i < dimension-1)    //Determines how many commas to print,depending on number of co-ordinates
             printf(" , ");
@@ -126,8 +162,10 @@ for (int i=0;i<=dimension-1;i++){
 	index+=product2;} 
     
     printf("  ;  Value = ");
-    printf("%d",arr[index]);
+    printf("%d",arr[index]);	//Prints array value at index mapped from co-ordinate
     printf("\n\n\n");}
+
+    printf("\n...Executed procedure 3...\n_______________________________________\n_______________________________________\n");
 }
 
 
