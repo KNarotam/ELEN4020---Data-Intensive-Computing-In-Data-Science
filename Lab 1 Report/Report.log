@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.12.4)  21 FEB 2018 21:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.12.4)  22 FEB 2018 13:45
 entering extended mode
 **./Report.tex
 (Report.tex
@@ -218,9 +218,35 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
 LaTeX Info: Redefining \[ on input line 2817.
 LaTeX Info: Redefining \] on input line 2818.
 )
-(C:\Users\knaro\AppData\Roaming\MiKTeX\2.9\tex\latex\lipsum\lipsum.sty
+(C:\Users\knaro\AppData\Roaming\MiKTeX\2.9\tex\latex\algorithms\algorithm.sty
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
+nment
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty"
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count107
+\float@exts=\toks21
+\float@box=\box30
+\@float@everytoks=\toks22
+\@floatcapt=\box31
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ifthen.sty"
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\@float@every@algorithm=\toks23
+\c@algorithm=\count108
+)
+(C:\Users\knaro\AppData\Roaming\MiKTeX\2.9\tex\latex\algorithms\algorithmic.sty
+Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
+\c@ALC@unique=\count109
+\c@ALC@line=\count110
+\c@ALC@rem=\count111
+\c@ALC@depth=\count112
+\ALC@tlm=\skip56
+\algorithmicindent=\skip57
+) (C:\Users\knaro\AppData\Roaming\MiKTeX\2.9\tex\latex\lipsum\lipsum.sty
 Package: lipsum 2014/07/27 v1.3 150 paragraphs of Lorem Ipsum dummy text
-\c@lips@count=\count107
+\c@lips@count=\count113
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\bookmark.sty"
 Package: bookmark 2016/05/17 v1.26 PDF bookmarks (HO)
@@ -298,13 +324,13 @@ Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
 Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
 )
 \@linkdim=\dimen137
-\Hy@linkcounter=\count108
-\Hy@pagecounter=\count109
+\Hy@linkcounter=\count114
+\Hy@pagecounter=\count115
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\pd1enc.def"
 File: pd1enc.def 2016/06/24 v6.83q Hyperref: PDFDocEncoding definition (HO)
 )
-\Hy@SavedSpaceFactor=\count110
+\Hy@SavedSpaceFactor=\count116
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\hyperref.cfg"
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
@@ -316,10 +342,10 @@ Package hyperref Info: Plain pages OFF on input line 4501.
 Package hyperref Info: Backreferencing OFF on input line 4506.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4735.
-\c@Hy@tempcnt=\count111
+\c@Hy@tempcnt=\count117
 LaTeX Info: Redefining \url on input line 5088.
 \XeTeXLinkMargin=\dimen138
-\Fld@menulength=\count112
+\Fld@menulength=\count118
 \Field@Width=\dimen139
 \Fld@charsize=\dimen140
 Package hyperref Info: Hyper figures OFF on input line 6342.
@@ -331,72 +357,72 @@ Package hyperref Info: Link coloring with OCG OFF on input line 6367.
 Package hyperref Info: PDF/A mode OFF on input line 6372.
 LaTeX Info: Redefining \ref on input line 6412.
 LaTeX Info: Redefining \pageref on input line 6416.
-\Hy@abspage=\count113
-\c@Item=\count114
-\c@Hfootnote=\count115
+\Hy@abspage=\count119
+\c@Item=\count120
+\c@Hfootnote=\count121
 )
 
 Package hyperref Message: Driver (autodetected): hpdftex.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hpdftex.def"
 File: hpdftex.def 2016/06/24 v6.83q Hyperref driver for pdfTeX
-\Fld@listcount=\count116
-\c@bookmark@seq@number=\count117
+\Fld@listcount=\count122
+\c@bookmark@seq@number=\count123
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\rerunfilecheck.sty"
 Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 )
-\Hy@SectionHShift=\skip56
+\Hy@SectionHShift=\skip58
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\bkm-pdftex.def"
 File: bkm-pdftex.def 2016/05/17 v1.26 bookmark driver for pdfTeX (HO)
-\BKM@id=\count118
+\BKM@id=\count124
 ))
 (C:\Users\knaro\AppData\Roaming\MiKTeX\2.9\tex\latex\ulem\ulem.sty
-\UL@box=\box30
-\UL@hyphenbox=\box31
-\UL@skip=\skip57
-\UL@hook=\toks21
+\UL@box=\box32
+\UL@hyphenbox=\box33
+\UL@skip=\skip59
+\UL@hook=\toks24
 \UL@height=\dimen141
-\UL@pe=\count119
+\UL@pe=\count125
 \UL@pixel=\dimen142
-\ULC@box=\box32
+\ULC@box=\box34
 Package: ulem 2012/05/18
 \ULdepth=\dimen143
 ) (Report.aux)
 \openout1 = `Report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
 
 -- Lines per column: 56 (exact).
 (C:\Users\knaro\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count120
+\scratchcounter=\count126
 \scratchdimen=\dimen144
-\scratchbox=\box33
-\nofMPsegments=\count121
-\nofMParguments=\count122
-\everyMPshowfont=\toks22
-\MPscratchCnt=\count123
+\scratchbox=\box35
+\nofMPsegments=\count127
+\nofMParguments=\count128
+\everyMPshowfont=\toks25
+\MPscratchCnt=\count129
 \MPscratchDim=\dimen145
-\MPnumerator=\count124
-\makeMPintoPDFobject=\count125
-\everyMPtoPDFconversion=\toks23
+\MPnumerator=\count130
+\makeMPintoPDFobject=\count131
+\everyMPtoPDFconversion=\toks26
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty"
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -410,8 +436,8 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
-\AtBeginShipoutBox=\box34
-Package hyperref Info: Link coloring OFF on input line 19.
+\AtBeginShipoutBox=\box36
+Package hyperref Info: Link coloring OFF on input line 21.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -419,91 +445,114 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count126
+\c@section@level=\count132
 )
-LaTeX Info: Redefining \ref on input line 19.
-LaTeX Info: Redefining \pageref on input line 19.
-LaTeX Info: Redefining \nameref on input line 19.
+LaTeX Info: Redefining \ref on input line 21.
+LaTeX Info: Redefining \pageref on input line 21.
+LaTeX Info: Redefining \nameref on input line 21.
 
 <Wits.png, id=3, 559.08875pt x 613.29124pt>
 File: Wits.png Graphic file (type png)
  <use Wits.png>
-Package pdftex.def Info: Wits.png used on input line 34.
+Package pdftex.def Info: Wits.png used on input line 36.
 (pdftex.def)             Requested size: 139.77184pt x 153.32243pt.
  [0
 
 
 {C:/Users/knaro/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <./Wits.png>
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 90--92
+Underfull \hbox (badness 10000) in paragraph at lines 92--94
 []\OT1/ptm/m/n/10 A \OT1/ptm/m/it/10 K\OT1/ptm/m/n/10 -dimensional in-te-ger ar
 -ray, rep-re-sented as
  []
 
 
-Overfull \hbox (10.35559pt too wide) in paragraph at lines 134--134
+Overfull \hbox (10.35559pt too wide) in paragraph at lines 136--136
 [] 
  []
 
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 138.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 140.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 LaTeX Font Info:    Font shape `OT1/pcr/m/it' in size <10> not available
-(Font)              Font shape `OT1/pcr/m/sl' tried instead on input line 138.
+(Font)              Font shape `OT1/pcr/m/sl' tried instead on input line 140.
 
-Underfull \hbox (badness 10000) in paragraph at lines 156--157
+Underfull \hbox (badness 10000) in paragraph at lines 158--159
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 156--157
+Underfull \hbox (badness 10000) in paragraph at lines 158--159
 
  []
 
 [1
 
 ]
-Underfull \hbox (badness 3009) in paragraph at lines 178--179
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 170.
+
+Underfull \hbox (badness 10000) in paragraph at lines 207--208
+[] []$\OML/cmm/m/it/10 array \OMS/cmsy/m/n/10  $ \OT1/ptm/m/n/10 refToIn-te-ger
+ $\OML/cmm/m/it/10 malloc\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 sizeof\OT1/cmr/m/n/1
+0 ($\OT1/ptm/m/n/10 refToInteger
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 208--209
+[] []\OT1/ptm/m/n/10 Display ``Di-men-sions $\OML/cmm/m/it/10 dimensions$\OT1/p
+tm/m/n/10 , El-e-ments
+ []
+
+
+Overfull \hbox (28.97336pt too wide) in paragraph at lines 219--220
+[] []$\OML/cmm/m/it/10 procedureThree\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 array; i
+niArray; num[]elements; dimension\OT1/cmr/m/n/10 )$ 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Underfull \hbox (badness 3009) in paragraph at lines 290--291
 []\OT1/ptm/m/n/8 Christensson, P; \OT1/ptm/m/it/8 Ar-ray Def-i-ni-tion\OT1/ptm/
 m/n/8 ; []$https : / / eli . thegreenplace . net / 2015 /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 181--182
+Underfull \hbox (badness 10000) in paragraph at lines 293--294
 []\OT1/ptm/m/n/8 Bendersky, E; \OT1/ptm/m/it/8 Mem-ory lay-out of multi-dimensi
 onal ar-rays
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 181--182
+Underfull \hbox (badness 10000) in paragraph at lines 293--294
 \OT1/ptm/m/it/8 - Eli Ben-der-sky's web-site\OT1/ptm/m/n/8 ; []$https : / / eli
  . thegreenplace . net / 2015 /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 184--185
+Underfull \hbox (badness 10000) in paragraph at lines 296--297
 \OT1/ptm/m/n/8 / / www . mathworks . com / help / matlab / math / multidimensio
 nal-[]arrays . html$[];
  []
 
-[2
-
-] <DimensionalArray.png, id=75, 645.91313pt x 566.86781pt>
+[2] <DimensionalArray.png, id=138, 645.91313pt x 566.86781pt>
 File: DimensionalArray.png Graphic file (type png)
 
 <use DimensionalArray.png>
-Package pdftex.def Info: DimensionalArray.png used on input line 197.
+Package pdftex.def Info: DimensionalArray.png used on input line 309.
 (pdftex.def)             Requested size: 258.36067pt x 226.7431pt.
 
-<MemoryAlloc.png, id=77, 1112.65688pt x 583.42969pt>
+<MemoryAlloc.png, id=140, 1112.65688pt x 583.42969pt>
 File: MemoryAlloc.png Graphic file (type png)
  <use MemoryAlloc.png>
-Package pdftex.def Info: MemoryAlloc.png used on input line 205.
+Package pdftex.def Info: MemoryAlloc.png used on input line 317.
 (pdftex.def)             Requested size: 556.32709pt x 291.71413pt.
 
-Overfull \hbox (40.32709pt too wide) in paragraph at lines 205--206
+Overfull \hbox (40.32709pt too wide) in paragraph at lines 317--318
  [][] 
  []
 
@@ -521,28 +570,24 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 220.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 332.
 [4
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 220.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 332.
  (Report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 220.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 220.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 220.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 332.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 332.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 332.
  ) 
 Here is how much of TeX's memory you used:
- 7295 strings out of 493333
- 109791 string characters out of 3139194
- 308013 words of memory out of 3000000
- 10697 multiletter control sequences out of 15000+200000
- 45535 words of font info for 89 fonts, out of 3000000 for 9000
+ 7646 strings out of 493333
+ 114182 string characters out of 3139194
+ 320712 words of memory out of 3000000
+ 10970 multiletter control sequences out of 15000+200000
+ 46642 words of font info for 90 fonts, out of 3000000 for 9000
  1144 hyphenation exceptions out of 8191
- 34i,19n,43p,747b,394s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 34i,19n,43p,747b,520s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/Mi
 KTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9
 /fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
@@ -554,9 +599,9 @@ ts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy
 /MiKTeX 2.9/fonts/type1/urw/courier/ucrro8a.pfb><C:/Program Files/MiKTeX 2.9/fo
 nts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/tim
 es/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Report.pdf (5 pages, 379799 bytes).
+Output written on Report.pdf (5 pages, 401361 bytes).
 PDF statistics:
- 197 PDF objects out of 1000 (max. 8388607)
- 40 named destinations out of 1000 (max. 500000)
- 160 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 287 PDF objects out of 1000 (max. 8388607)
+ 103 named destinations out of 1000 (max. 500000)
+ 200 words of extra memory for PDF output out of 10000 (max. 10000000)
 

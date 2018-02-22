@@ -4,6 +4,8 @@
 \usepackage{fancyhdr}
 \usepackage{url}
 \usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage{algorithmic}
 \usepackage{lipsum}
 \usepackage{bookmark}
 \usepackage[normalem]{ulem}
@@ -161,6 +163,116 @@ The randomly generated coordinate is now mapped to its 1D linear array index. Th
 
 \section{Pseudo Code}
 \label{Pseudo Code}
+
+\subsection{\texttt{main} Function}
+
+\begin{algorithm}[h!]
+\caption{\texttt{main} Function}
+\label{Main}
+\begin{algorithmic} 
+
+\STATE $srand(time(NULL))$
+\STATE $Dimension$
+\STATE
+\STATE $arrayInitializer1[\ ] \leftarrow (100, 100)$
+\STATE $Dimension \leftarrow sizeof(arrayInitializer1)/sizeof(int)$
+\STATE $allocateArray(arrayInitializer1, Dimension)$
+\STATE $arrayInitializer2[\ ] \leftarrow (100, 100, 100)$
+\STATE $Dimension \leftarrow sizeof(arrayInitializer2)/sizeof(int)$
+\STATE $allocateArray(arrayInitializer2, Dimension)$
+\STATE $arrayInitializer3[\ ] \leftarrow (50, 50, 50, 50)$
+\STATE $Dimension \leftarrow sizeof(arrayInitializer3)/sizeof(int)$
+\STATE $allocateArray(arrayInitializer3, Dimension)$
+\STATE $arrayInitializer4[\ ] \leftarrow (20, 20, 20, 20, 20)$
+\STATE $Dimension \leftarrow sizeof(arrayInitializer4)/sizeof(int)$
+\STATE $allocateArray(arrayInitializer4, Dimension)$
+
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{\texttt{allocateArray} Function}
+
+\begin{algorithm}[h!]
+\caption{\texttt{allocateArray} Function}
+\label{allocateArray}
+\begin{algorithmic} 
+
+\STATE \textbf{Input:} $iniArray[\ ]$ and $dimension$
+\STATE
+\STATE $num\_elements \leftarrow 1$
+\FOR{$i = 0$ to $dimension$}
+	\STATE $num\_elements \leftarrow num\_elements * iniArray[i]$
+\ENDFOR
+\STATE refToInteger $array$
+\STATE $array \leftarrow$ refToInteger $malloc(sizeof($refToInteger $num\_elements))$
+\STATE Display ``Dimensions $dimensions$, Elements $num\_elements$''
+\IF{$array\leftarrow NULL$}
+	\STATE Display ``malloc failed''
+	\STATE $exit(1)$
+\ENDIF
+\STATE
+\FOR{$i = 0$ to  $num\_elements$}
+	\STATE $array[i] \leftarrow i$
+\ENDFOR
+\STATE $procedureOne(array, num\_elements)$
+\STATE $procedureTwo(array, num\_elements)$
+\STATE $procedureThree(array, iniArray, num\_elements, dimension)$
+
+\end{algorithmic}
+\end{algorithm}
+
+
+\subsection{\texttt{procedureOne} Function}
+
+\begin{algorithm}[h!]
+\caption{\texttt{procedureOne} Function}
+\label{procedureOne}
+\begin{algorithmic} 
+
+\STATE \textbf{Input:} $arr[\ ]$ and $numElements$
+\STATE
+\STATE Display ``Procedure 1: ''
+\FOR{$i = 0$ to $numElements$}
+	\STATE $arr[i] \leftarrow 0$
+\ENDFOR
+\STATE Display ``...Executed procedure 1...''
+
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{\texttt{procedureTwo} Function}
+
+\begin{algorithm}[h!]
+\caption{\texttt{procedureTwo} Function}
+\label{procedureTwo}
+\begin{algorithmic} 
+
+\STATE \textbf{Input:} $arr[\ ]$ and $numElements$
+\STATE
+\STATE Display ``Procedure 2: ''
+\STATE $tenPercentElements \leftarrow numElements/10$
+\FOR{$i = 0$ to $numElements$}
+	\IF{$i < tenPercentElements$}
+		\STATE $arr[i] \leftarrow 1$
+	\ENDIF
+\ENDFOR
+\STATE Display ``...Executed procedure 2...''
+
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{\texttt{procedureThree} Function}
+
+\begin{algorithm}[h!]
+\caption{\texttt{procedureThree} Function}
+\label{procedureThree}
+\begin{algorithmic} 
+
+\STATE \textbf{Input:} $arr[\ ]$, $arr2[\ ]$, $numElements$, $dimensions$
+
+\end{algorithmic}
+\end{algorithm}
+
 
 \section{Final Code and Output}
 \label{Final Code and Output}
