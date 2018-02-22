@@ -11,7 +11,8 @@ void procedureThree(int *,int *,int ,int );
 int main(){
 
 	srand(time(NULL));  //Seeding for random number generator
-	int Dimension;	   
+	int Dimension;	
+    int mode;
 
 //////////////////////////////////////////////////////////////
 
@@ -36,7 +37,30 @@ int main(){
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //To view the entire output,disable 'Limit Scrolling to' in terminal>edit>profiles>edit>scrolling tab
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		
+    printf("Press 1 to run or 2 to input an array : ");
+    scanf("%d",&mode);
+    
+    if (mode == 2){
+    
+
+    //Input array dimension
+    printf("Enter array dimension : ");
+    scanf("%d", &Dimension);
+    int userArray[Dimension]; 
+    
+    //Input size of each dimension
+    printf("Enter the size of each dimension : ");
+    for (int i=0; i<Dimension; i++)
+    {
+        scanf("%d", &userArray[i]);
+    }
+    
+    printf("\n");
+    allocateArray(userArray,Dimension);
+}
+    
+    if (mode == 1){
+        
 	int arrayInitializer1[] = {100,100};
 	Dimension = sizeof(arrayInitializer1) / sizeof(int);
 	allocateArray(arrayInitializer1,Dimension);
@@ -51,7 +75,8 @@ int main(){
 
 	int arrayInitializer4[] = {20,20,20,20,20};
 	Dimension = sizeof(arrayInitializer4) / sizeof(int);
-	allocateArray(arrayInitializer4,Dimension);
+	allocateArray(arrayInitializer4,Dimension);}
+    
 
 }
 
@@ -144,7 +169,7 @@ printf(")");
 
 int product = 1;    //Variable for inner product
 int index = 0;      //Index is the linear row-major-ordered array index
-int product2 = 1;   //Variable for outer produc
+int product2 = 1;   //Variable for outer product
 
 //Row major indexing equation
 for (int i=0;i<=dimension-1;i++){
@@ -161,10 +186,3 @@ for (int i=0;i<=dimension-1;i++){
 
     printf("\n...Executed procedure 3...\n_______________________________________\n_______________________________________\n");
 }
-
-
-
-	
-
-
-
