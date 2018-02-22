@@ -4,6 +4,7 @@
 \usepackage{fancyhdr}
 \usepackage{url}
 \usepackage{amsmath}
+\usepackage{listings}
 \usepackage{algorithm}
 \usepackage{algorithmic}
 \usepackage{lipsum}
@@ -136,7 +137,7 @@ offset &= n_1 + N_1 \cdot (n_2 +N_2 \cdot (n_3 +N_3 \cdot (...+N_{K-1}n_K)...) )
 \end{equation}
 
 \section{Function Descriptions}
-\label{Program Description}
+\label{Function Description}
 \subsection{\texttt{allocateArray}}
 This function has two main responsibilities : to dynamically allocate the desired array, and to then call the three procedures that execute on the array.
 This function takes as inputs the initializer array (\texttt{iniArray[]}), and the number of dimensions.
@@ -163,7 +164,56 @@ The randomly generated coordinate is now mapped to its 1D linear array index. Th
 
 \section{Pseudo Code}
 \label{Pseudo Code}
+The pseudo code for the entire program is seen in Appendix~\ref{Pseudo Appendix}. Although written in one file, each function is split up into their own algorithms to better understand the pseudo code of each.
 
+\section{Final Code and Output}
+\label{Final Code and Output}
+The final program was coded in C on an Ubuntu system and compiled using a custom makefile. The program was tested using \emph{K}-dimensional arrays of different size to ensure it works as desired. These outputs can be seen in Figures~\ref{Result2D},~\ref{Result3D},~\ref{Result4D}, and~\ref{Result5D} in Appendix~\ref{Output}. The four given arrays mentioned in section~\ref{Problem Description} are tested in the program and yield the relevant results.
+
+
+\section{Conclusion}
+\label{Conclusion}
+A method was created to step through the elements of multiple arrays which varied in size and dimensions. The program yielded relevant results and was done so in a general way, i.e. the number of dimensions in the array are dynamic, as opposed to a nested loop. The coding was done in C on an Ubuntu operating system and was executed using a makefile in the command line prompt.
+
+
+\begin{thebibliography}{}
+
+\bibitem{Array Def}
+Christensson, P; \emph{Array Definition}; \url{https://eli.thegreenplace.net/2015/memory-layout-of-multi-dimensional-arrays}; Last Accessed: 21/02/2018
+
+\bibitem{Eli}
+Bendersky, E; \emph{Memory layout of multi-dimensional arrays - Eli Bendersky's website}; \url{https://eli.thegreenplace.net/2015/memory-layout-of-multi-dimensional-arrays}; Last Accessed: 21/02/2018
+
+\bibitem{Mathworks}
+Mathworks; \emph{Multidimensional Arrays - MATLAB \& Simulink}; \url{https://www.mathworks.com/help/matlab/math/multidimensional-arrays.html}; Last Accessed: 21/02/2018
+
+\end{thebibliography}
+
+\onecolumn
+\center
+\begin{appendices}
+\section{Diagrams}
+\label{Diagrams}
+
+\begin{figure}[h!]
+\renewcommand{\thefigure}{\arabic{figure}}
+\centering
+\includegraphics[scale=0.4]{DimensionalArray.png}
+\caption{Representation of a \emph{3}-dimensional array}
+\label{DimArray}
+\end{figure}
+
+\begin{figure}[h!]
+\renewcommand{\thefigure}{\arabic{figure}}
+\centering
+\includegraphics[scale=0.5]{MemoryAlloc.png}
+\caption{Memory allocation of a 3-dimensional in row-major order~\cite{Eli}}
+\label{3DArray}
+\end{figure}
+
+\twocolumn
+\section{Pseudo Code}
+\label{Pseudo Appendix}
 \subsection{\texttt{main} Function}
 
 \begin{algorithm}[h!]
@@ -173,16 +223,18 @@ The randomly generated coordinate is now mapped to its 1D linear array index. Th
 
 \STATE $srand(time(NULL))$
 \STATE $Dimension$
-\STATE
 \STATE $arrayInitializer1[\ ] \leftarrow (100, 100)$
 \STATE $Dimension \leftarrow sizeof(arrayInitializer1)/sizeof(int)$
 \STATE $allocateArray(arrayInitializer1, Dimension)$
+\STATE
 \STATE $arrayInitializer2[\ ] \leftarrow (100, 100, 100)$
 \STATE $Dimension \leftarrow sizeof(arrayInitializer2)/sizeof(int)$
 \STATE $allocateArray(arrayInitializer2, Dimension)$
+\STATE
 \STATE $arrayInitializer3[\ ] \leftarrow (50, 50, 50, 50)$
 \STATE $Dimension \leftarrow sizeof(arrayInitializer3)/sizeof(int)$
 \STATE $allocateArray(arrayInitializer3, Dimension)$
+\STATE
 \STATE $arrayInitializer4[\ ] \leftarrow (20, 20, 20, 20, 20)$
 \STATE $Dimension \leftarrow sizeof(arrayInitializer4)/sizeof(int)$
 \STATE $allocateArray(arrayInitializer4, Dimension)$
@@ -268,60 +320,76 @@ The randomly generated coordinate is now mapped to its 1D linear array index. Th
 \label{procedureThree}
 \begin{algorithmic} 
 
-\STATE \textbf{Input:} $arr[\ ]$, $arr2[\ ]$, $numElements$, $dimensions$
+\STATE \textbf{Input:} $arr[\ ]$, $arr2[\ ]$, $numberElements$, $dimensions$
+\STATE
+\STATE Display ``Procedure 3: ''
+\STATE $fivePercentElements \leftarrow numberElements*5/100$
+\FOR{$a = 0$ to $fivePercenElements$}
+	\STATE refToInteger $coordinate\_array$
+	\STATE $array \leftarrow$ refToInteger $malloc(sizeof($refToInteger $dimension))$	
+	\STATE Display ``Coordinate = (''
+	\FOR{$i = 0$ to $dimension$}
+		\STATE $coordinate\_array[i] \leftarrow rand()\%arr2[i]$
+		\STATE Display $coordinat\_array[i]$
+		\IF{$i < dimension -1$}
+			\STATE Display ``,''
+		\ENDIF
+	\ENDFOR
+	\STATE Display ``)''
+	\STATE $product \leftarrow 1$
+	\STATE $index \leftarrow 0$
+	\STATE $product2 \leftarrow 1$
+	\FOR{$i = 0$ to $dimension-1$}
+		\STATE $product \leftarrow 1$
+		\FOR{$j = i+1$ to including $dimension-1$}
+			\STATE $product \leftarrow product * arr2[j]$
+		\ENDFOR
+		\STATE $product2 \leftarrow product*coordinate\_array[i]$
+		\STATE $index \leftarrow index + product2$
+	\ENDFOR
+	\STATE Display `` ; Value = '' $arr[index]$
+\ENDFOR
+\STATE Display ``...Executed procedure 3...''
 
 \end{algorithmic}
 \end{algorithm}
 
-
-\section{Final Code and Output}
-\label{Final Code and Output}
-
-
-\section{Conclusion}
-\label{Conclusion}
-The conclusion goes here.
-
-
-
-\begin{thebibliography}{}
-
-\bibitem{Array Def}
-Christensson, P; \emph{Array Definition}; \url{https://eli.thegreenplace.net/2015/memory-layout-of-multi-dimensional-arrays}; Last Accessed: 21/02/2018
-
-\bibitem{Eli}
-Bendersky, E; \emph{Memory layout of multi-dimensional arrays - Eli Bendersky's website}; \url{https://eli.thegreenplace.net/2015/memory-layout-of-multi-dimensional-arrays}; Last Accessed: 21/02/2018
-
-\bibitem{Mathworks}
-Mathworks; \emph{Multidimensional Arrays - MATLAB \& Simulink}; \url{https://www.mathworks.com/help/matlab/math/multidimensional-arrays.html}; Last Accessed: 21/02/2018
-
-\end{thebibliography}
-
 \onecolumn
 \center
-\begin{appendices}
-\section{Diagrams}
-\label{Diagrams}
+\section{Output}
+\label{Output}
 
 \begin{figure}[h!]
 \renewcommand{\thefigure}{\arabic{figure}}
 \centering
-\includegraphics[scale=0.4]{DimensionalArray.png}
-\caption{Representation of a \emph{3}-dimensional array}
-\label{DimArray}
+\includegraphics[scale=0.6]{Result2D.jpg}
+\caption{Output result of a 2-Dimensional Array of size 8, i.e. \texttt{Array[8][8]} }
+\label{Result2D}
 \end{figure}
 
 \begin{figure}[h!]
 \renewcommand{\thefigure}{\arabic{figure}}
 \centering
-\includegraphics[scale=0.5]{MemoryAlloc.png}
-\caption{Memory allocation of a 3-dimensional in row-major order~\cite{Eli}}
-\label{3DArray}
+\includegraphics[scale=0.6]{Result3D.jpg}
+\caption{Output result of a 3-Dimensional Array of size 4, i.e. \texttt{Array[4][4][4]} }
+\label{Result3D}
 \end{figure}
 
-\onecolumn
-\section{Coding}
-\label{Coding}
+\begin{figure}[h!]
+\renewcommand{\thefigure}{\arabic{figure}}
+\centering
+\includegraphics[scale=0.48]{Result4D.jpg}
+\caption{Output result of a 4-Dimensional Array of size 3, i.e. \texttt{Array[3][3][3][3]} }
+\label{Result4D}
+\end{figure}
+
+\begin{figure}[h!]
+\renewcommand{\thefigure}{\arabic{figure}}
+\centering
+\includegraphics[scale=1]{Result5D.jpg}
+\caption{Output result of a 5-Dimensional Array of size 2, i.e. \texttt{Array[2][2][2][2][2]} }
+\label{Result5D}
+\end{figure}
 
 \end{appendices}
 
