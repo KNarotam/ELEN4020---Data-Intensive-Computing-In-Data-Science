@@ -6,7 +6,11 @@
 \usepackage{amsmath}
 \usepackage{lipsum}
 \usepackage{bookmark}
+\usepackage{algorithm}
+\usepackage{algorithmic}
 \usepackage[normalem]{ulem}
+\usepackage[usenames, dvipsnames]{color}
+\usepackage[table,xcdraw]{xcolor}
 \useunder{\uline}{\ul}{}
 \def\code#1{\texttt{#1}}
 
@@ -138,11 +142,116 @@ The speedup is limited by the total time needed for the serial proportion of the
 \section{Function Description}
 \label{Function Description}
 
+\subsection{Transpose method}
+The input matrix \code{array} is transposed by swapping element $A[i,j]$ with $A[j,i]$. Note only elements in the upper triangle of the array are transposed. For a square matrix of width $N$, the number of upper triangle elements $\Delta$ is given by 
+
+\begin{equation}
+\Delta = \frac{N^2 - N}{2}
+\end{equation}
+A second array, \code{utArray}, is populated with only the indices of upper triangle elements of \code{array}. In this way, only $\Delta$ elements need to be traversed in order to do the transpose. \code{utArray} is therefore a 1D array of size $\Delta$. As \code{utArray} is traversed, it's corresponding 2D coordinate in \code{array} is obtained using
+\begin{equation}
+row = i~/~N\\
+\end{equation}
+and \begin{equation}
+column = i~\%~N
+\end{equation}
+Where $i$ is the index of a particular element. For example a 4x4 matrix given as\\
+
+\centering
+ 
+$Array = \left[\begin{array}{cccc}
+0 & \colorbox{Goldenrod}{1} & \colorbox{Goldenrod}{2} & \colorbox{Goldenrod}{3}	\\
+4 & 5 & \colorbox{Goldenrod}{6} & \colorbox{Goldenrod}{7}	\\
+8 & 9 & 10 & \colorbox{Goldenrod}{11}	\\
+12 & 13 & 14 & 15
+\end{array}\right]$
+\flushleft
+will produce an upper triangle matrix\newline\\
+\centering
+$ utArray = \left[\begin{array}{cccccc}
+\colorbox{Goldenrod}{1} & \colorbox{Goldenrod}{2} & \colorbox{Goldenrod}{3} & \colorbox{Goldenrod}{6}& \colorbox{Goldenrod}{7}& \colorbox{Goldenrod}{11}
+\end{array}\right]$
+\flushleft
+Example : choose element '6' in \code{utArray}; $i = 6$.\\
+\centering
+$\rightarrow row = i~/~N = 6~/~4 = 1$ (integer division)\\
+$\rightarrow column = i~\%~N = 6~\%~4 = 2$ (modulo division)\\
+\flushleft
+So at coordinate (1,2) in \code{array}, the value is 6 as expected. This is then swapped with the element at (2,1) in \code{array} - which is 9. This process is repeated for every element in \code{utArray}.
+
+\subsection{Multithreading approach}
+For optimal performance, it is desirable to have the workload divided equally between all threads. In this case it means having each thread to the same amount of transposes. For this, we calculate $\alpha$, which is the number of elements in \code{utArray} to traverse per thread.
+\begin{equation}
+\alpha = \frac{\Delta}{Threads}
+\end{equation}
+
+So for our previous 4x4 matrix, using 2 threads~($Threads = 2$),\newline\newline
+\centering
+$\alpha = \frac{\Delta}{Threads} = \frac{6}{2} = 3$
+\flushleft
+This means thread 0 transposes the first three elements in \code{utArray}, and thread 1 transposes the next three elements.
+
+\centering
+$Array = \left[\begin{array}{cccc}
+0 & \colorbox{Goldenrod}{1} & \colorbox{Goldenrod}{2} & \colorbox{Goldenrod}{3}	\\
+4 & 5 & \colorbox{green}{6} & \colorbox{green}{7}	\\
+8 & 9 & 10 & \colorbox{green}{11}	\\
+12 & 13 & 14 & 15
+\end{array}\right]$
+\flushleft
+then\\
+\centering
+$ utArray = \left[\begin{array}{cccccc}
+\colorbox{Goldenrod}{1} & \colorbox{Goldenrod}{2} & \colorbox{Goldenrod}{3} & \colorbox{green}{6}& \colorbox{green}{7}& \colorbox{green}{11}
+\end{array}\right]$\\
+\flushleft
+Here the yellow highlighted elements are processed by thread 0, and the green highlighted elements are processed by thread 1.
+
+\subsection{\code{transposeBlock}}
+This is the function that executes the transpose of each upper triangle element. It takes as arguments the starting point index for each thread, \code{sp}, and the number of elements per thread, \code{alpha}. It then takes the index value from \code{utArray} (using \code{utArr\_ptr}) and gets the corresponding row (\code{r}) and column (\code{c}) values in \code{Array}. Using this row and column value, the element is then transposed.
+
+
 \section{Pseudo Code}
 \label{Pseudo Code}
 
+The pseudo code for the entire program is seen in Appendix~\ref{Pseudo Appendix}. Although written in one file, the pseudo code is done in such a way that each method/function is split into their own algorithms. Algorithm~\ref{Struct} in Appendix~\ref{Pseudo Appendix} is the defined \code{struct} for the thread. Algorithm~\ref{transposeBlock} in Appendix~\ref{Pseudo Appendix} is the function to transpose the matrix. Algorithms~\ref{main},~\ref{Normal Transposition} and \ref{PThread Transposition} are all within the \code{main} class. Algorithms~\ref{Normal Transposition} and \ref{PThread Transposition} were commented out during testing so that each individual time could be recorded for the results presented in Table~\ref{Results}.
+
 \section{Final Code and Output}
 \label{Final Code and Output}
+
+The final programs were coded in \emph{C} on an \emph{Ubuntu} system and compiled using a custom makefile. Table~\ref{Results} shows the times recorded for each of the square matrices defined in Section~\ref{Problem Description}. Each matrix was tested three times and the average time taken to transpose the matrix using no threading, PThread and OpenMP was recorded. The time is recorded in milliseconds and is tested on a machine with the following specifications.
+
+\subsection{Testing Machine}
+\label{Testing Machine}
+An ASUS N550JV high performance laptop was used for testing. The machine has an \emph{Intel(R) Core(TM) i7-4700HQ CPU} with $12GB$ of RAM installed with a 64-bit operating system installed. The operating system installed is \emph{Windows 10 Pro} however for testing, a virtual machine was installed with the \emph{Ubuntu 16.04.3} 64-bit installed. $5GB$ of the total RAM is dedicated to the virtual machine. The following code was run in the terminal to determine the total number of threads in a shared memory space:
+
+\code{cat /proc/sys/kernel/threads-max}
+
+The output of this command was $38255$.
+
+\begin{table}[h!]
+\centering
+\caption{Table showing time taken to transpose the matrices using no threading, PThread and OpenMP}
+\label{Results}
+\begin{tabular}{|r|c|c|c|}
+\hline
+\multicolumn{1}{|l|}{{\ul \textbf{N0 = N1}}} & {\ul \textbf{128}} & {\ul \textbf{1024}} & {\ul \textbf{8192}} \\ \hline
+\multicolumn{4}{|c|}{\cellcolor[HTML]{C0C0C0}{\ul \textbf{No threading}}}                                     \\ \hline
+\multicolumn{1}{|c|}{}                       & 0.036              & 7.004               & 1367.784            \\ \hline
+\multicolumn{4}{|c|}{\cellcolor[HTML]{C0C0C0}{\ul \textbf{PThread}}}                                          \\ \hline
+\textbf{4}                                   & 0.086              & 0.109333            & 0.125333            \\ \hline
+\textbf{8}                                   & 0.191              & 0.324667            & 0.204333            \\ \hline
+\textbf{16}                                  & 0.292              & 0.366333            & 0.392667            \\ \hline
+\textbf{64}                                  & 1.063333           & 12.287              & 170.9217            \\ \hline
+\textbf{128}                                 & 2.269667           & 16.59567            & 712.026             \\ \hline
+\multicolumn{4}{|c|}{\cellcolor[HTML]{C0C0C0}{\ul \textbf{OpenMP}}}                                           \\ \hline
+\textbf{4}                                   &                    &                     &                     \\ \hline
+\textbf{8}                                   &                    &                     &                     \\ \hline
+\textbf{16}                                  &                    &                     &                     \\ \hline
+\textbf{64}                                  &                    &                     &                     \\ \hline
+\textbf{128}                                 &                    &                     &                     \\ \hline
+\end{tabular}
+\end{table}
 
 \section{Different Methods}
 \label{Different Methods}
@@ -156,7 +265,7 @@ Although an efficient method, this would be poor on the memory. The reason for t
 \begin{figure}[h!]
 \renewcommand{\thefigure}{\arabic{figure}}
 \centering
-\includegraphics[scale=0.4]{Splitting.png}
+\includegraphics[scale=0.35]{Splitting.png}
 \caption{An $8\times8$ matrix that is split into smaller $4\times4$ matrices}
 \label{Splitting}
 \end{figure}
@@ -182,6 +291,145 @@ Unknown; \emph{What is Amdahl's Law? - Definition from Techopedia}; \url{https:/
 
 \end{thebibliography}
 
+\onecolumn
+\begin{appendices}
+\section{Pseudo Code}
+\label{Pseudo Appendix}
+
+\begin{algorithm}[h!]
+\caption{Struct \code{thread\_data}}
+\label{Struct}
+\begin{algorithmic} 
+
+\STATE int $thread\_id$
+\STATE refToInteger $arr\_ptr$
+\STATE refToInteger $utArr\_ptr$
+\STATE int $sp$
+\STATE int $Alpha$
+\STATE int $arraySize$
+
+\end{algorithmic}
+\end{algorithm}
+
+
+\begin{algorithm}[h!]
+\caption{\code{transposeBlock} Function}
+\label{transposeBlock}
+\begin{algorithmic} 
+\STATE \textbf{Input:} refToVoid $threadarg$
+\STATE
+\STATE refToStruct $my\_data$
+\STATE $my\_data \leftarrow$ refToStruct $threadarg$
+\STATE int $temp$
+\STATE
+\FOR{$row = my\_data$ refTo $sp$ to $my\_data$ refTo $+ my\_data$ refTo $Alpha$}
+	\STATE $r \leftarrow my\_data$ refTo $utArr\_ptr[row]~ / ~my\_data$ refTo $arraySize$
+	\STATE $c \leftarrow my\_data$ refTo $utArr\_ptr[row]~ \% ~my\_data$ refTo $arraySize$
+	\STATE $temp \leftarrow my\_data$ refTo $arr\_ptr[r*my\_data$ refTo $arraySize + c]$
+	\STATE $my\_data$ refTo $arr\_ptr[c*my\_data$ refTo $arraySize + r] \leftarrow temp$
+\ENDFOR
+\STATE
+\STATE $pthread\_exit(NULL)$
+
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h!]
+\caption{\code{main} Function}
+\label{main}
+\begin{algorithmic} 
+\STATE \textbf{Input:} $size$
+\STATE
+\STATE int $size$
+\STATE int $temp$
+\STATE Display ``Enter matrix size : ''
+\STATE $size \leftarrow$ user input
+\STATE $num\_elements \leftarrow size*size$
+\STATE $delta \leftarrow (num\_elements - size)/2$
+\STATE refToInteger $array$
+\STATE $array \leftarrow$ refToInteger $malloc(sizeof($refToInteger $num\_elements))$
+\STATE
+\IF{$array\leftarrow NULL$}
+	\STATE Display ``malloc failed''
+	\STATE $exit(1)$
+\ENDIF
+\STATE
+\STATE $utIndex \leftarrow 0$
+\FOR{$diag = 0$ to $size-1$}
+	\FOR{$col = diag+1$ to $ size$}
+		\STATE $utArray[utIndex] \leftarrow size*diag + col$
+		\STATE $utIndex++$
+	\ENDFOR
+\ENDFOR
+\STATE
+\STATE Display ``$time\_spent$ ms"
+
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h!]
+\caption{Normal Transposition method without threading within the \code{main} Function}
+\label{Normal Transposition}
+\begin{algorithmic} 
+\STATE Begin $clock$
+\STATE
+\FOR{$d=0$ to $size-1$}
+	\FOR{$col = d+1$ to $size$}
+		\STATE $temp \leftarrow array[d*size + col]$
+		\STATE $array[d*size + col] \leftarrow array[col*size + d]$
+		\STATE $array[col*size + d] \leftarrow temp$
+	\ENDFOR
+\ENDFOR
+\STATE
+\STATE End $clock$
+\STATE $time\_spent \leftarrow $(double)$(end-begin)*1000/CLOCKS\_PER\_SEC$
+
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h!]
+\caption{PThread Transposition method within the \code{main} Function}
+\label{PThread Transposition}
+\begin{algorithmic} 
+\STATE \textbf{Input:} $Threads$
+\STATE
+\STATE int $Threads$
+\STATE Display ``Enter number of threads : "
+\STATE $Threads \leftarrow$ user input
+\STATE $alpha \leftarrow delta/Threads$
+\STATE $pthread\_t$:
+	\STATE $\quad$begin
+		\STATE $\qquad threads[Threads]$
+	\STATE $\quad$end
+\STATE thread\_data $td[Threads]$
+\STATE
+\STATE Begin $clock$
+\STATE
+\FOR{$i=0$ to $delta$ with increments of $i+=alpha$}
+	\STATE Display ``main() : creating thread" $i/alpha$
+	\STATE
+	\STATE $td[i/alpha]$ refTo $thread\_id \leftarrow i/alpha$
+	\STATE $td[i/alpha]$ refTo $sp \leftarrow i$
+	\STATE $td[i/alpha]$ refTo $Alpha \leftarrow alpha$
+	\STATE $td[i/alpha]$ refTo $arr\_ptr \leftarrow array$
+	\STATE $td[i/alpha]$ refTo $utArr\_ptr \leftarrow utArray$
+	\STATE $td[i/alpha]$ refTo $arraySize \leftarrow size$
+	\STATE $pthread\_create$:
+		\STATE $\quad$begin
+			\STATE $\qquad threads[i/alpha]$
+			\STATE $\qquad NULL$
+			\STATE $\qquad transposeBlock$
+			\STATE $\qquad$refToVoid $td[i/alpha]$
+		\STATE $\quad$end
+\ENDFOR
+\STATE
+\STATE End $clock$
+\STATE $time\_spent \leftarrow $(double)$(end-begin)*1000/CLOCKS\_PER\_SEC$
+
+\end{algorithmic}
+\end{algorithm}
+
+\end{appendices}
 
 
 
