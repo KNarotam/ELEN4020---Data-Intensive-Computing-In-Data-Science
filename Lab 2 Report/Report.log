@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.12.4)  9 MAR 2018 00:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.12.4)  10 MAR 2018 01:29
 entering extended mode
 **./Report.tex
 (Report.tex
@@ -512,18 +512,12 @@ LaTeX Font Info:    Try loading font information for OT1+pcr on input line 109.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-Underfull \hbox (badness 10000) in paragraph at lines 157--159
+Underfull \hbox (badness 10000) in paragraph at lines 158--160
 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 163.
-
-
-Package xcolor Warning: Incompatible color definition on input line 163.
-
-
-Package xcolor Warning: Incompatible color definition on input line 163.
+Package xcolor Warning: Incompatible color definition on input line 164.
 
 
 Package xcolor Warning: Incompatible color definition on input line 164.
@@ -535,34 +529,46 @@ Package xcolor Warning: Incompatible color definition on input line 164.
 Package xcolor Warning: Incompatible color definition on input line 165.
 
 
-Package xcolor Warning: Incompatible color definition on input line 172.
+Package xcolor Warning: Incompatible color definition on input line 165.
 
 
-Package xcolor Warning: Incompatible color definition on input line 172.
+Package xcolor Warning: Incompatible color definition on input line 166.
 
 
-Package xcolor Warning: Incompatible color definition on input line 172.
+Package xcolor Warning: Incompatible color definition on input line 175.
 
 
-Package xcolor Warning: Incompatible color definition on input line 172.
+Package xcolor Warning: Incompatible color definition on input line 175.
 
 
-Package xcolor Warning: Incompatible color definition on input line 172.
+Package xcolor Warning: Incompatible color definition on input line 175.
 
 
-Package xcolor Warning: Incompatible color definition on input line 172.
+Package xcolor Warning: Incompatible color definition on input line 175.
+
+
+Package xcolor Warning: Incompatible color definition on input line 175.
+
+
+Package xcolor Warning: Incompatible color definition on input line 175.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 178--179
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 180--182
+
+ []
 
 [1
 
 ]
-
-Package xcolor Warning: Incompatible color definition on input line 196.
-
-
-Package xcolor Warning: Incompatible color definition on input line 196.
-
-
-Package xcolor Warning: Incompatible color definition on input line 196.
+Underfull \hbox (badness 10000) in paragraph at lines 192--193
+[]\OT1/ptm/m/n/10 So for our pre-vi-ous $\OT1/cmr/m/n/10 4 \OMS/cmsy/m/n/10  \
+OT1/cmr/m/n/10 4$ \OT1/ptm/m/n/10 ma-trix, us-ing 2
+ []
 
 
 Package xcolor Warning: Incompatible color definition on input line 205.
@@ -572,34 +578,131 @@ Package xcolor Warning: Incompatible color definition on input line 205.
 
 
 Package xcolor Warning: Incompatible color definition on input line 205.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 211--212
+
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 216.
+
+
+Package xcolor Warning: Incompatible color definition on input line 216.
+
+
+Package xcolor Warning: Incompatible color definition on input line 216.
 
 LaTeX Font Info:    Font shape `OT1/pcr/m/it' in size <10> not available
-(Font)              Font shape `OT1/pcr/m/sl' tried instead on input line 210.
-<Splitting.png, id=65, 629.35126pt x 232.61906pt>
+(Font)              Font shape `OT1/pcr/m/sl' tried instead on input line 224.
+[2pdfTeX warning (ext4): destination with the same identifier (name{table.1}) h
+as been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.277 
+      ] <Splitting.png, id=105, 629.35126pt x 232.61906pt>
 File: Splitting.png Graphic file (type png)
  <use Splitting.png>
-Package pdftex.def Info: Splitting.png used on input line 268.
+Package pdftex.def Info: Splitting.png used on input line 290.
 (pdftex.def)             Requested size: 220.27623pt x 81.41788pt.
- [2pdfTeX warning (ext4): destination with the same identifier (name{table.1}) 
+
+<Diagonal.png, id=108, 385.44pt x 140.77594pt>
+File: Diagonal.png Graphic file (type png)
+ <use Diagonal.png>
+Package pdftex.def Info: Diagonal.png used on input line 304.
+(pdftex.def)             Requested size: 231.26578pt x 84.4662pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Underfull \hbox (badness 3158) in paragraph at lines 317--318
+[]\OT1/ptm/m/n/8 Barney, B; Liv-er-more, L; \OT1/ptm/m/it/8 POSIX Threads Pro-g
+ram-ming\OT1/ptm/m/n/8 ; []$https : / /
+ []
+
+
+Underfull \hbox (badness 4060) in paragraph at lines 326--327
+[]\OT1/ptm/m/n/8 Unknown; \OT1/ptm/m/it/8 What is Am-dahl's Law? - Def-i-ni-tio
+n from Techo-pe-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 329--330
+[]\OT1/ptm/m/n/8 Iliev, H; \OT1/ptm/m/it/8 c++ - OpenMP set[]num[]threads() is 
+not work-ing
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 329--330
+\OT1/ptm/m/it/8 - Stack Over-flow\OT1/ptm/m/n/8 ; []$https : / / stackoverow .
+ com / questions / 11095309 /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 329--330
+\OT1/ptm/m/n/8 openmp-[]set-[]num-[]threads-[]is-[]not-[]working / 11096742 # 1
+1096742$[]; Last
+ []
+
+[3pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) 
 has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.278 \begin{thebibliography}{}
-                               pdfTeX warning (ext4): destination with the same
- identifier (name{figure.1}) has been already used, duplicate ignored
+l.333 \onecolumn
+                pdfTeX warning (ext4): destination with the same identifier (na
+me{figure.2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.278 \begin{thebibliography}{}
-                                <./Splitting.png>] [3
-
-]
+l.333 \onecolumn
+                 <./Splitting.png> <./Diagonal.png>]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 300.
+put line 339.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[4
+
+] [5] [6] [7] <RawData.png, id=284, 455.45157pt x 423.08063pt>
+File: RawData.png Graphic file (type png)
+
+<use RawData.png>
+Package pdftex.def Info: RawData.png used on input line 526.
+(pdftex.def)             Requested size: 273.27304pt x 253.85033pt.
+ <Graph128.png, id=285, 421.575pt x 316.18124pt>
+File: Graph128.png Graphic file (type png)
+
+<use Graph128.png>
+Package pdftex.def Info: Graph128.png used on input line 534.
+(pdftex.def)             Requested size: 337.26045pt x 252.94533pt.
+ <Graph1024.png, id=286, 421.575pt x 316.18124pt>
+File: Graph1024.png Graphic file (type png)
+
+<use Graph1024.png>
+Package pdftex.def Info: Graph1024.png used on input line 542.
+(pdftex.def)             Requested size: 337.26045pt x 252.94533pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<Graph8192.png, id=287, 421.575pt x 316.18124pt>
+File: Graph8192.png Graphic file (type png)
+ <use Graph8192.png>
+Package pdftex.def Info: Graph8192.png used on input line 550.
+(pdftex.def)             Requested size: 337.26045pt x 252.94533pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -615,40 +718,67 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 437.
-[4
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 561.
+[8
 
-] [5]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 437.
- (Report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 437.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 437.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 437.
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) ha
+s been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.561 \end{document}
+                    pdfTeX warning (ext4): destination with the same identifier
+ (name{figure.4}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.561 \end{document}
+                     <./RawData.png> <./Graph128.png (PNG copy)>] [9pdfTeX warn
+ing (ext4): destination with the same identifier (name{figure.5}) has been alre
+ady used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.561 \end{document}
+                    pdfTeX warning (ext4): destination with the same identifier
+ (name{figure.6}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.561 \end{document}
+                     <./Graph1024.png (PNG copy)> <./Graph8192.png (PNG copy)>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 561.
+(Report.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 561.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 561.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 561.
  ) 
 Here is how much of TeX's memory you used:
- 8431 strings out of 493333
- 124542 string characters out of 3139194
- 340989 words of memory out of 3000000
- 11703 multiletter control sequences out of 15000+200000
+ 8522 strings out of 493333
+ 125774 string characters out of 3139194
+ 350583 words of memory out of 3000000
+ 11734 multiletter control sequences out of 15000+200000
  49473 words of font info for 93 fonts, out of 3000000 for 9000
  1144 hyphenation exceptions out of 8191
- 41i,16n,43p,779b,582s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,16n,43p,779b,655s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/Mi
 KTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9
 /fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
 ype1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
-ts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8
-.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:
-/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program 
-Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiK
-TeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
-ype1/urw/courier/ucrro8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times
-/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/P
-rogram Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Report.pdf (6 pages, 387468 bytes).
+ic/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr
+6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/
+Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Fi
+les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
+/urw/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/courier/uc
+rro8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Pro
+gram Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX
+ 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Report.pdf (10 pages, 573187 bytes).
 PDF statistics:
- 327 PDF objects out of 1000 (max. 8388607)
- 134 named destinations out of 1000 (max. 500000)
- 147 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 449 PDF objects out of 1000 (max. 8388607)
+ 189 named destinations out of 1000 (max. 500000)
+ 188 words of extra memory for PDF output out of 10000 (max. 10000000)
 
