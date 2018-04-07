@@ -142,11 +142,11 @@ The second task is the \code{reduce} function, which is responsible for taking t
 
 An example of how the \emph{MapReduce} can be used could be as follows. Consider 5 files, containing two columns each. In terms of the framework, each file has a key and a value. Within each file, the first column is the name of a city and the second column would be the temperature on a random day. From these files, the goal is to find the maximum temperature for each city recorded. Using the \emph{MapReduce} framework, five mappers will work on its own file. The mapper will return the maximum temperature for each city. The reducer will then take the results from each mapper, and produce one output of each city and their maximum temperature recorded~\cite{IBM}.
 
-\section{Function Description}
-\label{Function Description}
-Using the \_\_ framework, the algorithm was written in \_\_ programming language.
+\section{Algorithms}
+\label{Algorithms}
+Using the \emph{MrJob} framework, the algorithm was written in $Python$ programming language.
 
-\subsection{Algorithm A: Repetitive use of \emph{MapReduce}}
+\subsection{Algorithm A: Using \emph{MapReduce} Repeated Times}
 \label{Algorithm A}
 Given two matrices, \emph{M} and \emph{N}, with the respective elements $m_{ij}$ and $n_{jk}$, the product, \emph{P}, will be $P=MN$, with the elements $p_{ik}$, where
 
@@ -157,38 +157,241 @@ $
 
 The matrix will three key attributes, the first two would be regarded as the key, i.e. row number and column number, with the third being the value at that position. Matrix $M$ has the relation $M(I,J,V)$ with the corresponding tuples $(i,j,m_{ij})$. Matrix $N$ would have a similar relation as $N(J,K,W)$ with the tuples $(j,k,n_{jk})$. Since \emph{MapReduce} was created in order to handle larget sets of data, many large matrices are sparse, i.e. most elements are 0, and thus these tuples can be omitted. $i$, $j$ and $k$ could be implicit in the position of an element rather than written explicitly with the element itself. In a situation like this, the \code{map} function must be designed to construct $I$, $J$, and $K$ from the tuples from the position of the data~\cite{Book}.
 
+The product output of the two matrices is a natural join, after the grouping, i.e. mapping. This means that between the two matrices, the $J$ attribute will be in common, resulting in the tuples $(i,j,k,v,w)$, where $(i,j,v)$ in $M$ and $j(j,k,w)$ in $N$. The natural join tuples, i.e. the five component tuple, represents a pair of matrix elements, $(m_{ij}, n_{jk})$. The desired tuple should have four components, $(i,j,k, v\times w)$ as this would represent the desired product result. Now that this relation has been established, one \code{map-reduce} operation can be done. The grouping can be done with $I$ and $K$ being the attributes for the grouping, the sum of $V \times W$ will be the aggregation~\cite{Book}.
 
-\subsection{Algorithm B: Using \emph{MapReduce} once}
+Ultimately, the matrix multiplication can be cascaded of two \code{map-reduce} operations:
+
+\begin{enumerate}
+\item \textbf{\code{Map}}:
+\begin{itemize}
+	\item sends matrix element to key value pair:
+		\subitem $m_{ij} \rightarrow (j, (M,i,m_{ij})$
+		\subitem $n_{jk} \rightarrow (j, (N,k, n_{jk})$
+\end{itemize}
+
+\item \textbf{\code{Reduce}}:
+\begin{itemize}
+	\item for each key, $j$, examine list of associated values and produce the tuple $(i,j,m_{ij}n_{jk})$
+	\item Output of this function is key $j$ with the list of all of the tuples of the from from $j$
+\end{itemize}
+
+\item \textbf{\code{Map}}:
+\begin{itemize}
+	\item this function is applied to the pairs which are the outputs from the prior \code{reduce} function\\
+	\item The pairs are of the form $\rightarrow$ 
+		\subitem $(j, [(i_1,k_1,v_1), (i_2,k_2,v_2),...,(i_q,k_q.v_q)])$
+		\subitem $v_q = m_{i_qj} \times n_{jk_q}$
+	\item From this, $p$ key-value pairs are produced:
+		\subitem $((i_1,k_1),v_1),((i_2,k_2), v_2),...,((i_p,k_p),v_p)$
+
+\end{itemize}
+	
+\item \textbf{\code{Reduce}}:
+\begin{itemize}
+	\item for each key, $(i,k)$, produce sum of list of values associated with the respective key
+	\item The result $\rightarrow ((i,k),v)$ where $v$ is the value of the element in row $i$ and column $k$ in the product matrix $P$~\cite{Book}.
+
+\end{itemize}
+	
+\end{enumerate}
+
+\subsection{Algorithm B: Using One \emph{MapReduce} Step}
 \label{Algorithm B}
+A more efficient method of performing the basic matrix multiplication method would be to improve the two functions and ultimately use \code{MapReduce} only once to solve for $P=MN$. This is done by using the \code{map} function to create sets of elements that are needed to compute each element for the matrix $P$. One input element, will be turned into many key-value pairs, $(i,k)$ where $i$ is a row of $M$ and $k$ is a column of $N$~\cite{Book}.
 
+\begin{enumerate}
+\item \textbf{\code{Map}}:
+
+\begin{itemize}
+	\item for each element of $M$, $m_{ij}$, produce key-value pair:
+		\subitem $((i,k), (M,j,m_{ij}))$ for $k = 1,2,....$ number of columns of $N$
+	\item for each element of $N$, $n_{jk}$, produce key-value pair:
+		\subitem $((i,k), (N,j,n_{jk}))$ for $i = 1,2,....$ number of rows of $M$
+\end{itemize}
+
+
+\item \textbf{\code{Reduce}}:
+\begin{itemize}
+	\item each key, $(i,k)$ will have a associated list with the values $(M,j,m_{ij})$ and $(N,j,n_{jk})$ for all possible values of $j$
+	\item function must connect the two values on the list that have the same value of $j$ for each $j$
+
+\end{itemize}
+	
+\end{enumerate}
+
+
+\subsection{Algorithm C: Strassen Algorithm}
+\label{Algorithm C}
+The \emph{Strassen} Algorithm, or the \emph{Divide and Conquer} method for solving matrix multiplication can only be applied to square matrices, $n \times n$. However, the size of $n$ can only be in powers of 2. The multiplying matrices are divided into 4 smaller, sub matrices of size $\frac{n}{2}$~\cite{TutorialsPoint, GFG}. An example of the \emph{Strassen} algorithm would be as follows.
+
+Given that $P=M\times N$, $M = \begin{bmatrix}
+A &B \\ 
+C &D 
+\end{bmatrix}$, $N = \begin{bmatrix}
+E &F \\ 
+G &H 
+\end{bmatrix}$ and $P = \begin{bmatrix}
+I &J \\ 
+K &L 
+\end{bmatrix}$
+
+Using \emph{Strassen}'s algorithm, the following equations must be calculated:
+\begin{align*}
+M_1&:= (A+C)\times (E +F)\\
+M_2&:= (B+D) \times (G+H)\\
+M_3&:=(A-D)\times (E+H)\\
+M_4&:= A \times (F-H)\\
+M_5&:= (C+D) \times (E)\\
+M_6&:= (A+B) \times (H)\\
+M_7&:= D \times (G-E)
+\end{align*}
+Then,
+\begin{align*}
+I&:=M_2+M_3-M_6-M_7\\
+J&:=M_4+M_6\\
+K&:=M_5 +M_7\\
+L&:=M_1-M_3-M_4-M_5
+\end{align*}
+
+With regards to using the \code{MapReduce} functions, it could be implemented many ways, one of which would be using \emph{MapReduce} in a straight-forward fashion:
+\begin{enumerate}
+\item Compute $fv(A)$ and $fv(B)$ which takes $\log_n$ passes
+\item Each value in $fv(A)$ is multiplied to the corresponding value from $fv(B)$\\
+
+\emph{These two steps take one \code{MapReduce} pass}\\
+
+\item Using various equations, the output from step 2 is transformed into the values in the product matrix.
+
+\emph{This last step takes $\log_n$ \code{MapReduce} passes}~\cite{Conference}.
+\end{enumerate}
+
+\section{Function Description}
+\label{Function Description}
+
+\subsection{\code{MatrixGenerator}}
+\label{MatrixGenerator}
+
+Takes in an input (stored as N) from the user which defines the matrix dimensions (square matrix). A function is defined as create with parameter \code{matrix\_file}. \code{matrix\_file} is a text file with a unique name which will store a generated matrix.
+A \code{for} loop is started, from $x = 0$ to $x = N$, which contains another \code{for} loop. This has an overall nested \code{for} loop structure and allows the program to create rows and coloumns of the same size. The second \code{for} loop, from $y = 0$ to $y = N$, generates a random integer from 1 to 10 using the \code{randint} function. This random integer is then written to the file, with a single space inbetween, using the file name provided via the parameter provided to the \code{create} function
+
+The code then calls the function twice using the parameter file names \emph{File1ForLab3.txt} and \emph{File2ForLab3.txt}
+
+\subsection{\code{MatrixMultiply1}}
+\label{MatrixMultiply1}
+The function aims to multiply two matrices together by first using a \emph{MapReduce} system to improve the speed and efficiency of the calculations when dealing with large data sets. The function reads in two text files which contain a matrix each. These matrices are in \emph{Matrix-Market} format and the first line defines their 2D parameters. The algorithm makes use of a single step \emph{MapReduce} before multiplication.\\
+
+The \code{Map} function reads in the position (the $i$ and $j$ positions) and the corresponding value at that position. The matrix is then mapped, which means each value in the matrix is converted to a key-value format. The key being an identifier and the value is the corresponding element for that key. This is done by defining each element in terms of its co-ordinates and for Matrix 1 given each element a matrix identifier. The terms, in Matrix 1, are duplicated equal to the number of columns in Matrix 2 and are stored as the mapped results for Matrix 1. The format of these mapped views are show in equation~\ref{eqn2}.
+
+\begin{equation}
+\label{eqn2}
+\begin{split}
+Z_{ij} = ((i,k),(M,j, m_{ij})
+\end{split}
+\end{equation}
+where:\\
+$Z_{ij}$  = Final key-value pair for that particular value\\
+$I$ = Co-ordinate of element in Matrix \\
+$K$ = Iterator which goes from $1,2,…., N$ where $n$ = number of columns in matrix 2\\
+$M$= Matrix identifier \\
+$J$ = Second co-ordinate of the element within the matrix\\
+$M_{i, j}$  = Value of element at the give $i-j$ position.\\
+
+The result of the mapping is then passed to the \code{Reduc}e function which combines the relevant elements into a list. The elements that are combined need to have the same matrix identifier terms as well as the same value of $j$. These elements are then added to the key-value pair for that key and are joined to form a list of values. The same process is done for all possible matrix identifiers and $j$ values. The result from the Reduce Function is then multiplied and summed to give you a set of final key-value pairs which represents the product of matrix 1 and 2.
+
+
+\subsection{\code{MatrixMultiply2}}
+\label{MatrixMultiply2}
+This method is similar to the standard \emph{MapReduce} method shown in Section~\ref{MatrixMultiply1}, however, it makes use of slightly different keys and two separate \emph{MapReduce} systems to improve on the speed of the first algorithm.\\
+
+In the first round of Mapping the first matrix uses its $j$ values as the key rather than iterating to $k$ for each $i-j$ value as in Section~\ref{MatrixMultiply1}. For matrix 2 the $I$ value is used as the key instead. Example of this key value system is shown in equation~\ref{eqn3}.
+
+\begin{equation}
+\label{eqn3}
+\begin{split}
+Z_{ij} = (j,(M,i, m_{ij})
+\end{split}
+\end{equation}
+where:\\
+$Z_{ij}$  =  key-value pair\\
+$J$ = $J$ position of element and key in this element ($I$ for matrix 2)\\
+$M$ = Matrix identifier\\
+$I$ = $I$ position of element\\
+$M_{ij}$ = Element at position $i-j$\\
+
+Once this mapping is done it is sent to the \code{Reduce} function which follows a similar pattern as in ection~\ref{MatrixMultiply1}, it appends the values of the same keys to form a list for that key and stores them. 
+Once the initial \emph{MapReduce} is complete the second \emph{MapReduce} system a second \emph{MapReduce} is done where the matrix identifier and the the co-ordinate not used in the first mapping are used as the key and the list is appended with the values corresponding to those keys. 
+The second \code{Reduce} function sums the values of those elements with the same key values.
 
 \section{Pseudo Code}
 \label{Pseudo Code}
 
+\begin{algorithm}[h!]
+\caption{The \code{Map} function~\cite{lendapp}}
+\label{Map Algorithm}
+\begin{algorithmic} 
+\FOR {each element $m_{ij}$ of $M$}
+	\STATE produce $(key,value)$ pairs $((i,k),(M,j,m_{ij}))$ for $k = 1,2,3...$ number of columns of $N$
+\ENDFOR
+\FOR {each element $n_{jk}$ of $N$}
+	\STATE produce $(key,value)$ pairs $((i,k),(N,j,n_{jk}))$ for $i = 1,2,3...$ number of rows of $M$
+\ENDFOR
+\RETURN set of $(key,value)$ pairs that each key, $(i,k)$, has a list with values $(M,j,m_{ij})$ and $(N,j,n_{jk})$ for all possible values of $j$
+
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h!]
+\caption{The \code{Reduce} function~\cite{lendapp}}
+\label{Reduce Algorithm}
+\begin{algorithmic} 
+\FOR {each key $(i,k)$}
+	\STATE sort values begin with $M$ by $j$ in $list_M$
+	\STATE sort values begin with $N$ y $j$ in $list_N$
+	\STATE multiply $M_{ij}$ and $n_{jk}$ for $j^{th}$ value of each list
+	\STATE sum up $m_{ij} * n_{jk}$
+\ENDFOR
+\RETURN $(i,k)$, $\sum_{j=1}^{}m_{ij} * n_{jk}$
+
+
+\end{algorithmic}
+\end{algorithm}
+
 
 \section{Final Code and Output}
 \label{Final Code and Output}
-
+The final code was developed in \emph{Python} using the \emph{MrJob} framework. The testing that was done calculated the time taken to multiply randomly generated matrices, using the \code{MatrixGenerator} function, using both matrix multiply functions created. These generated matrices are not sparse, i.e. have a density of $100\%$. Following this, matrices provided with lower densities were tested.
 
 
 \section{Conclusion}
 \label{Conclusion}
-The conclusion goes here.
+Matrix multiplication using \emph{MapReduce} framework was presented. A variety of algorithms and methods were presented using the \emph{MapReduce} framework in order to calculate matrix multiplication.
 
 
 \begin{thebibliography}{}
 
 \bibitem{WhatIs}
-Bigelow, SJ; Chu-Carroll, MC; \emph{What is MapReduce? - Definition from WhatIs.com}; \url{What is MapReduce? - Definition from WhatIs.com}; Last Accessed: 04/04/2018
+Bigelow, SJ; Chu-Carroll, MC; \emph{What is MapReduce? - Definition from WhatIs.com}; \url{https://searchcloudcomputing.techtarget.com/definition/MapReduce}; Last Accessed: 04/04/2018
 
 \bibitem{IBM}
-IBM Analytics; \emph{What is MapReduce? | IBM Analytics}; \url{https://www.ibm.com/analytics/hadoop/mapreduce}; Last Accessed: 04/04/2018
+IBM Analytics; \emph{What is MapReduce? | IBM Analytics}; \url{https://www.ibm.com/analytics/hadoop/MapReduce}; Last Accessed: 04/04/2018
 
 \bibitem{Hadoop}
 Hadoop; \emph{MapReduce Tutorial}; \url{https://hadoop.apache.org/docs/r1.2.1/mapred_tutorial.html}; Last Accessed: 04/04/2018
 
 \bibitem{Book}
 Leskovec, J; Rajaraman, A; Ullman, JD; \emph{Mining of Massive Datasets - Chapter 2}; Stanford University; Palo Alto, CA; March 2014
+
+\bibitem{TutorialsPoint}
+TutorialsPoint; \emph{Design and Analysis of Algorithms Strassen’s Matrix Multiplication}; \url{https://www.tutorialspoint.com/design_and_analysis_of_algorithms/design_and_analysis_of_algorithms_strassens_matrix_multiplication.htm}; Last Accessed: 04/04/2018
+
+\bibitem{GFG}
+GeeksforGeeks; \emph{Divide and Conquer | Set 5 (Strassen's Matrix Multiplication) - GeeksforGeeks}; \url{https://www.geeksforgeeks.org/strassens-matrix-multiplication/}; Last Accessed: 04/04/2018
+
+\bibitem{Conference}
+Deng, M; Ramanan, P; \emph{MapReduce Implementation of Strassen's Algorithm for Matrix Multiplication}; Proceedings of the 4th ACM SIGMOD Workshop on Algorithms and Systems fro MapReduce and Beyond Article No. 7; Chicago, IL, USA; 14-19 May 2017
+
+\bibitem{lendapp}
+Aytekin, M; \emph{Matrix Multiplication with MapReduce | lendapp}; \url{https://lendap.wordpress.com/2015/02/16/matrix-multiplication-with-mapreduce/}; Last Accessed: 04/04/2018
 
 \end{thebibliography}
 
