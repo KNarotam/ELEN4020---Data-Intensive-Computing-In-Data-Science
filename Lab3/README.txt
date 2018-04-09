@@ -13,4 +13,4 @@ make algorithm1 - will build and run Python2 the Python script for MatrixMultipl
 make algorithm2 - will build and run Python3 the Python script for MatrixMultiply2.py
 
 Please NOTE:
-If the given files, labelled outA1, outA2, etc must be renamed to File1ForLab3.txt and File2ForLab3.txt respectively.
+Of the given files, labelled outA1, outA2, etc must be renamed to File1ForLab3.txt and File2ForLab3.txt respectively in order for the algorithms to run.
